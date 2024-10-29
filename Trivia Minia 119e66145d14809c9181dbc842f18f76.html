@@ -1,0 +1,685 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Trivia Minia</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="119e6614-5d14-809c-9181-dbc842f18f76" class="page sans"><header><h1 class="page-title">Trivia Minia</h1><p class="page-description"></p></header><div class="page-body"><ul id="119e6614-5d14-80d1-b57d-f2275e145893" class="toggle"><li><details open=""><summary>Trivia-001 | Steps to Create an Instance in Trivia-Minia Game</summary><ul id="119e6614-5d14-8015-8aca-c41314a1f4ee" class="bulleted-list"><li style="list-style-type:disc"><strong>Precondition:</strong> The user is logged in as an admin.</li></ul><ul id="119e6614-5d14-80c1-881d-d098ce06d772" class="bulleted-list"><li style="list-style-type:disc"><strong>Steps:</strong></li></ul><ol type="1" id="119e6614-5d14-80b7-a572-c93ba8a91749" class="numbered-list" start="1"><li>Navigate to the Trivia-Minia game.</li></ol><ol type="1" id="119e6614-5d14-8075-8263-ee424f1d446d" class="numbered-list" start="2"><li>Click on the “Instances” plus button.</li></ol><ol type="1" id="119e6614-5d14-8012-86d3-d85ac97714e8" class="numbered-list" start="3"><li>Input a valid instance name (e.g., &quot;Trivia 1&quot;).</li></ol><ol type="1" id="119e6614-5d14-8042-9d2a-fc49d9a783bc" class="numbered-list" start="4"><li>Click the save button.</li></ol><figure id="119e6614-5d14-80e6-bf4c-d628264d38da" class="image"><a href="image.png"><img style="width:680px" src="image.png"/></a></figure><p id="119e6614-5d14-8095-ae4b-fad3b5b7db63" class=""><strong>Expected Result:</strong> The admin sees the newly created instance &quot;Trivia 1&quot; in the instances list.</p><figure id="119e6614-5d14-800d-a8bb-d2e71d1ae1e1" class="image"><a href="image%201.png"><img style="width:679.984375px" src="image%201.png"/></a></figure></details></li></ul><ul id="119e6614-5d14-80c8-a7d3-eee5f74dba61" class="toggle"><li><details open=""><summary>Trivia-002 | Steps to Add New Round inside an Instance</summary><ul id="119e6614-5d14-808e-b6fb-f9b4b99e01ab" class="bulleted-list"><li style="list-style-type:disc"><strong>Precondition:</strong> <ul id="119e6614-5d14-8081-9cc7-fd8d81d5bd28" class="bulleted-list"><li style="list-style-type:circle">The user is logged in as an admin.</li></ul><ul id="119e6614-5d14-80fa-b5dd-c073c8c3dbe1" class="bulleted-list"><li style="list-style-type:circle">There should be at least one existing instance.</li></ul></li></ul><ul id="119e6614-5d14-8009-8e44-fe7dbb0b4b5f" class="bulleted-list"><li style="list-style-type:disc"><strong>Steps:</strong><ol type="1" id="119e6614-5d14-80fb-82b5-e1b202f29a75" class="numbered-list" start="1"><li>Navigate to the instance “Control” panel.</li></ol><ol type="1" id="119e6614-5d14-80fb-8970-fa05ed566169" class="numbered-list" start="2"><li>Click on the “Control” button.</li></ol><ol type="1" id="119e6614-5d14-8085-b7d2-ca025ce6e174" class="numbered-list" start="3"><li>Click on the “Add Round” button.</li></ol><ol type="1" id="119e6614-5d14-8038-96aa-d9a9632e2f76" class="numbered-list" start="4"><li>Input a valid round name (e.g., &quot;Round 1&quot;).</li></ol><ol type="1" id="119e6614-5d14-8031-a75e-fbc4607ced45" class="numbered-list" start="5"><li>Click the Add button.</li></ol><figure id="119e6614-5d14-8020-ad8c-f3b911e9734f" class="image"><a href="image%202.png"><img style="width:651.984375px" src="image%202.png"/></a></figure></li></ul><ul id="119e6614-5d14-800f-aa9a-dfe7d9d25c35" class="bulleted-list"><li style="list-style-type:disc">Expected Result: After clicking the Add button, the user should see a confirmation message indicating that the round has been successfully added. Additionally, the new round (e.g., &quot;Round 1&quot;) should be displayed in the list of rounds within the instance “Control” panel.</li></ul><figure id="119e6614-5d14-80d7-8a59-dccfb377e1e7" class="image"><a href="image%203.png"><img style="width:679.984375px" src="image%203.png"/></a></figure></details></li></ul><ul id="119e6614-5d14-8085-99eb-f36c3b393443" class="toggle"><li><details open=""><summary>Trivia-003 | Steps to Add Multiple Choice Questions Inside a Round</summary><hr id="119e6614-5d14-80d7-89ce-d3f7793342d8"/><p id="119e6614-5d14-802a-a36e-f97577ecbf48" class="">Precondition</p><ul id="119e6614-5d14-8000-9d64-d306812f9641" class="bulleted-list"><li style="list-style-type:disc">The user is logged in as an admin.</li></ul><ul id="119e6614-5d14-80e4-bb7d-ce7cb98b1b83" class="bulleted-list"><li style="list-style-type:disc">There should be at least one existing instance.</li></ul><ul id="119e6614-5d14-80b9-97f6-c21720e17bf6" class="bulleted-list"><li style="list-style-type:disc">Inside the instance, there should be at least one round.</li></ul><h3 id="119e6614-5d14-80ef-9594-fd22fef02baf" class="">Steps</h3><ol type="1" id="119e6614-5d14-8064-be7a-e121a5d1725e" class="numbered-list" start="1"><li>Navigate to the instance “Round” section.</li></ol><ol type="1" id="119e6614-5d14-80cd-ba1a-d1bc6cfe994c" class="numbered-list" start="2"><li>Click on the “Add Question” button.</li></ol><ol type="1" id="119e6614-5d14-80a1-9639-d072233088e8" class="numbered-list" start="3"><li>Click on the “Multiple Choice” radio button.</li></ol><ol type="1" id="119e6614-5d14-801e-b98f-d11946a89b05" class="numbered-list" start="4"><li>Input a valid question name (e.g., &quot;Question 1&quot;).</li></ol><ol type="1" id="119e6614-5d14-80e2-b4ca-c7e9ae57b511" class="numbered-list" start="5"><li>Enable the “Disable Media Frame” button.</li></ol><ol type="1" id="119e6614-5d14-80e8-a21e-fddd90454edb" class="numbered-list" start="6"><li>Upload images for “Mobile” and “Mainboard Media.”</li></ol><ol type="1" id="119e6614-5d14-80e8-94f1-d81351a242c6" class="numbered-list" start="7"><li>Click to select the arrangement as “Auto.”</li></ol><ol type="1" id="119e6614-5d14-800d-a827-cb67ad9f3012" class="numbered-list" start="8"><li>Click on the “Add Answer” button.</li></ol><ol type="1" id="119e6614-5d14-803a-9a5c-dc6cd216c091" class="numbered-list" start="9"><li>Input the answer title (e.g., &quot;Answer 1&quot;).</li></ol><ol type="1" id="119e6614-5d14-80f4-b517-fb6546b42107" class="numbered-list" start="10"><li>Upload the answer image.</li></ol><ol type="1" id="119e6614-5d14-809a-bc1b-ec93bae7e07e" class="numbered-list" start="11"><li>Click the save button.</li></ol><ol type="1" id="119e6614-5d14-80fd-ab41-e3d70e7df485" class="numbered-list" start="12"><li>Click on the “Add Answer” button (Note: for multiple choice, two answers are needed for selection).</li></ol><ol type="1" id="119e6614-5d14-802c-9c81-d379c16c2804" class="numbered-list" start="13"><li>Input the answer title (e.g., &quot;Answer 2&quot;).</li></ol><ol type="1" id="119e6614-5d14-80e7-827a-ca33c182d3c1" class="numbered-list" start="14"><li>Upload the answer image.</li></ol><ol type="1" id="119e6614-5d14-8043-b610-f1aa9f431867" class="numbered-list" start="15"><li>Click the save button.</li></ol><ol type="1" id="119e6614-5d14-809e-9d9c-dc2199457230" class="numbered-list" start="16"><li>Click to save the question.</li></ol><figure id="119e6614-5d14-8014-b8df-e629f041f972" class="image"><a href="image%204.png"><img style="width:679.96875px" src="image%204.png"/></a></figure><figure id="119e6614-5d14-80f0-a5aa-ca18cdb9b263" class="image"><a href="image%205.png"><img style="width:679.984375px" src="image%205.png"/></a></figure><h3 id="119e6614-5d14-8004-9fb8-e358959615d9" class="">Expected Result</h3><ul id="119e6614-5d14-804e-9462-d5c3e4e05827" class="bulleted-list"><li style="list-style-type:disc">After completing these steps, the user should see a confirmation message indicating that the question has been successfully added. The newly created question (e.g., &quot;Question 1&quot;) with its associated answers should be displayed in the instance’s “Round” section. This verification should be possible on both mobile gameplay and the mainboard.</li></ul><figure id="119e6614-5d14-808d-bdc2-e6221329bfd5" class="image"><a href="image%206.png"><img style="width:679.984375px" src="image%206.png"/></a></figure></details></li></ul><ul id="119e6614-5d14-802f-afaf-fc7402e72852" class="toggle"><li><details open=""><summary>Trivia-004 | Validate Multiple Choice Question Successfully Showing on Game Play And Mainboard</summary><p id="11ae6614-5d14-80cd-a5c0-f51d1b93ae4b" class="">Precondition</p><ul id="11ae6614-5d14-80cd-ba7e-ec5bf8242501" class="bulleted-list"><li style="list-style-type:disc">The user is logged in as an admin.</li></ul><ul id="11ae6614-5d14-80b1-96ff-f6d359e62f6e" class="bulleted-list"><li style="list-style-type:disc">There should be at least one existing instance.</li></ul><ul id="11ae6614-5d14-8013-bf64-d2cc86f4933c" class="bulleted-list"><li style="list-style-type:disc">Inside the instance, there should be at least one round.</li></ul><h3 id="11ae6614-5d14-80d8-bf9c-e0916c446d24" class="">Steps</h3><ol type="1" id="11ae6614-5d14-8002-8bcf-d6a3680b22f3" class="numbered-list" start="1"><li>Navigate to the instance section.</li></ol><ol type="1" id="11ae6614-5d14-802f-a0ab-c7d264b6887f" class="numbered-list" start="2"><li>Click on the “Start” button.</li></ol><ol type="1" id="11ae6614-5d14-8056-9c10-e8f7411d6461" class="numbered-list" start="3"><li>Click on the “Yes” button to confirm the game start process.</li></ol><ol type="1" id="11ae6614-5d14-8009-b444-f813f4f8057a" class="numbered-list" start="4"><li>Click to “Move to Next Stage” on “Question” stage</li></ol><ol type="1" id="11ae6614-5d14-8025-acec-d546ae5bc0fd" class="numbered-list" start="5"><li>Click on the “QR” icon</li></ol><ol type="1" id="11ae6614-5d14-80f7-b8c9-fd1d4a07fb7f" class="numbered-list" start="6"><li>Click on the “Open Link” button</li></ol><div id="11ae6614-5d14-802e-a638-c24131134a0f" class="column-list"><div id="11ae6614-5d14-806f-8a80-e5257fcde74a" style="width:50%" class="column"><figure id="11ae6614-5d14-80a2-ba2b-eea5ec1c86d7" class="image"><a href="image%207.png"><img style="width:651.984375px" src="image%207.png"/></a></figure></div><div id="11ae6614-5d14-80b8-bb16-e1dcb11c8321" style="width:50%" class="column"><ol type="1" id="11ae6614-5d14-80d7-8196-fc2c03995220" class="numbered-list" start="1"><li><figure id="11ae6614-5d14-807f-86fa-d9233a61f291" class="image"><a href="image%208.png"><img style="width:679.984375px" src="image%208.png"/></a></figure></li></ol></div></div><figure id="11ae6614-5d14-8025-87af-e1bad89f94dc" class="image"><a href="image%209.png"><img style="width:708px" src="image%209.png"/></a></figure></details></li></ul><p id="11ae6614-5d14-80ea-9332-efbf6026fc58" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
